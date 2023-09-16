@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="login-body">
+    <div class="container">
+        <h1>Login</h1>
+        <div id="alert-message"></div>
+        <form method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p class="signup-link">Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a></p>
+    </div>
+    <script>
+    console.log("JS is Running!");
+    var message = "{{ message }}" || "";
+
+    console.log("Message from the server:", message);
+
+    // Get the alert message element by ID
+    var alertMessage = document.getElementById("alert-message");
+
+    // Function to display an alert message
+    function showAlert(message, alertType) {
+        // Create a new alert element
+        var alert = document.createElement("div");
+        alert.className = "alert alert-" + alertType;
+        alert.textContent = message;
+
+        // Clear any previous alert messages
+        alertMessage.innerHTML = "";
+
+        // Append the alert to the alert message element
+        alertMessage.appendChild(alert);
+    }
+
+    // Display the received message as an alert
+    if (message) {
+        showAlert(message, "info"); // You can use "success" or "error" as needed
+    }
+    </script>
+</body>
+</html>
